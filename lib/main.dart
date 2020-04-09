@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         accentColor: Colors.amberAccent
       ),
-      home: AnotherPage(),
+      home: HomePage(),
     );
   }
 }
 
-class AnotherPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class AnotherPage extends StatelessWidget {
                   MyImage(),
                   Padding(padding: EdgeInsets.all(20)),
                   MyAppName(),
-                  Padding(padding: EdgeInsets.all(20)),
+                  Padding(padding: EdgeInsets.all(30)),
                   SignUpPageButton(),
                   Padding(padding: EdgeInsets.all(20)),
                 ],
@@ -44,7 +44,81 @@ class AnotherPage extends StatelessWidget {
   }
 }
 
+class SignupPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.all(15)),
+                BackButton(),
+                Padding(padding: EdgeInsets.all(75)),
+              ],
+            ),
+            Container(
+              width: 300,
+              height: 400,
+              child: Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(50)),
+                    Row(
+                      children: <Widget>[
+                        Text('Name'),
+                        SizedBox(
+                          width: 45,
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: TextField(),
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Row(
+                      children: <Widget>[
+                        Text('Email'),
+                        SizedBox(
+                          width: 45,
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: TextField(),
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Row(
+                      children: <Widget>[
+                        Text('Password'),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: TextField(),
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.all(15)),
+                    SubmitButton(),
+                    ]
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 class SignUpPageButton extends StatelessWidget {
+  Future navigateToSubPage(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
+  }
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
@@ -54,7 +128,40 @@ class SignUpPageButton extends StatelessWidget {
     ),
       color: Color(0xFF42A5F5),
       textColor: Colors.amberAccent[700],
+      onPressed: () {
+        navigateToSubPage(context);
+      },
+    );
+  }
+}
+class SubmitButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      child: Text(
+          'Submit',
+          style: TextStyle(fontSize: 25)
+      ),
+      color: Color(0xFF42A5F5),
+      textColor: Colors.white,
       onPressed: () {},
+    );
+  }
+}
+
+class BackButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      child: Text(
+          '<< Back',
+          style: TextStyle(fontSize: 20)
+      ),
+      color: Color(0xAA42A5FF),
+      textColor: Colors.white54,
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
   }
 }
