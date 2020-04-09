@@ -31,12 +31,27 @@ class HomePage extends StatelessWidget {
         child: Column(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.all(75)),
-                  MyImage(height: 180, width: 180,),
-                  Padding(padding: EdgeInsets.all(20)),
+                  MyImage(height: 90, width: 90,),
+                  Padding(padding: EdgeInsets.all(5)),
                   MyAppName(),
-                  Padding(padding: EdgeInsets.all(30)),
-                  SignUpPageButton(),
                   Padding(padding: EdgeInsets.all(20)),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      decoration: InputDecoration(labelText: 'Email',),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      decoration: InputDecoration(labelText: 'Password'),
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(15)),
+                  LoginButton(),
+                  Padding(padding: EdgeInsets.all(35)),
+                  SignUpPageButton(),
+                  Padding(padding: EdgeInsets.all(10)),
                 ],
         ),
       ),
@@ -44,7 +59,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class SignupPage extends StatelessWidget {
+class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,47 +78,33 @@ class SignupPage extends StatelessWidget {
               height: 400,
               child: Column(
                   children: <Widget>[
-                    MyImage(height: 100, width: 100,),
+                    MyImage(height: 80, width: 80,),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Text("Sign Up", style: TextStyle(
+                        color: Color(0xFF42A5F5),
+                        fontSize: 25,
+                      fontWeight: FontWeight.bold
+                    ),),
+                    Padding(padding: EdgeInsets.all(8)),
+                    SizedBox(
+                      width: 280,
+                      child: TextField(
+                        decoration: InputDecoration(labelText: 'Full Name'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: TextField(
+                        decoration: InputDecoration(labelText: 'Email'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: TextField(
+                        decoration: InputDecoration(labelText: 'Password'),
+                      ),
+                    ),
                     Padding(padding: EdgeInsets.all(10)),
-                    Row(
-                      children: <Widget>[
-                        Text('Name'),
-                        SizedBox(
-                          width: 45,
-                        ),
-                        SizedBox(
-                          width: 200,
-                          child: TextField(),
-                        ),
-                      ],
-                    ),
-                    Padding(padding: EdgeInsets.all(5)),
-                    Row(
-                      children: <Widget>[
-                        Text('Email'),
-                        SizedBox(
-                          width: 45,
-                        ),
-                        SizedBox(
-                          width: 200,
-                          child: TextField(),
-                        ),
-                      ],
-                    ),
-                    Padding(padding: EdgeInsets.all(5)),
-                    Row(
-                      children: <Widget>[
-                        Text('Password'),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        SizedBox(
-                          width: 200,
-                          child: TextField(),
-                        ),
-                      ],
-                    ),
-                    Padding(padding: EdgeInsets.all(20)),
                     SubmitButton(),
                     ]
               ),
@@ -115,26 +116,48 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-
-class SignUpPageButton extends StatelessWidget {
-  Future navigateToSubPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
-  }
+class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text(
-          'Sign up',
+          'Login',
           style: TextStyle(fontSize: 25)
-    ),
+      ),
       color: Color(0xFF42A5F5),
-      textColor: Colors.amberAccent[700],
-      onPressed: () {
-        navigateToSubPage(context);
-      },
+      textColor: Colors.amberAccent[400],
+      onPressed: () {},
     );
   }
 }
+
+class SignUpPageButton extends StatelessWidget {
+  Future navigateToSubPage(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        SizedBox(
+          width: 250,
+        ),
+        RaisedButton(
+          child: Text(
+              'Sign up',
+              style: TextStyle(fontSize: 18)
+        ),
+          color: Color(0x0000A5F5),
+          textColor: Colors.black54,
+          onPressed: () {
+            navigateToSubPage(context);
+          },
+        ),
+      ],
+    );
+  }
+}
+
 class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -173,7 +196,7 @@ class MyAppName extends StatelessWidget {
     return const Text.rich(
       TextSpan(
         style: TextStyle(
-          fontSize: 40,
+          fontSize: 20,
           fontFamily: "Calibri, Arial, Tahoma, Serif",
         color: Color(0xFF42A5F5)
         ),
