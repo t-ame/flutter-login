@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
         child: Column(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.all(75)),
-                  MyImage(),
+                  MyImage(height: 180, width: 180,),
                   Padding(padding: EdgeInsets.all(20)),
                   MyAppName(),
                   Padding(padding: EdgeInsets.all(30)),
@@ -63,7 +63,8 @@ class SignupPage extends StatelessWidget {
               height: 400,
               child: Column(
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.all(50)),
+                    MyImage(height: 100, width: 100,),
+                    Padding(padding: EdgeInsets.all(10)),
                     Row(
                       children: <Widget>[
                         Text('Name'),
@@ -102,7 +103,7 @@ class SignupPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(padding: EdgeInsets.all(15)),
+                    Padding(padding: EdgeInsets.all(20)),
                     SubmitButton(),
                     ]
               ),
@@ -186,13 +187,16 @@ class MyAppName extends StatelessWidget {
 }
 
 class MyImage extends StatelessWidget {
+  MyImage({Key key, this.height, this.width}) : super(key: key);
+  final double height;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Image(
         image: NetworkImage("https://www.iconsdb.com/icons/preview/orange/dice-xxl.png"),
-        height: 180,
-        width: 180,
+        height: this.height,
+        width: this.width,
       ),
     );
   }
